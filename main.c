@@ -278,19 +278,9 @@ int main(void)
 	return 0;
 }
 
-//void insert(DD_Task* elm , DD_Task_List* list){
-//	for(DD_Task_List* l = list; l->next_task != NULL; l = l->next_task){
-//		if ( l->task.absolute_deadline > elm.absolute_deadline) {
-//			DD_Task_List* tmp = *l;
-//			l->next_task = tmp;
-//		}
-//	}
-//}
-
-
 /*-----------------------------------------------------------*/
 
-static void DDS_Task( void *pvParameters )
+void DDS_Task( void *pvParameters )
 {
 	DD_Task_List active_tasks;
 	active_tasks.task.t_handle = (void*)NULL;
@@ -350,14 +340,14 @@ static void DDS_Task( void *pvParameters )
 
 	}
 }
-static void count_task( void *pvParameters ){
-	while  (1) {
-		vTaskDelay(1000);
-		STM_EVAL_LEDToggle(amber_led);
-	}
-}
+//static void count_task( void *pvParameters ){
+//	while  (1) {
+//		vTaskDelay(1000);
+//		STM_EVAL_LEDToggle(amber_led);
+//	}
+//}
 
-static void User_Defined1_Task( void *pvParameters )
+void User_Defined1_Task( void *pvParameters )
 {
 	while(1)
 	{
@@ -367,21 +357,21 @@ static void User_Defined1_Task( void *pvParameters )
 	}
 }
 
-static void User_Defined2_Task( void *pvParameters )
+void User_Defined2_Task( void *pvParameters )
 {
 	while(1)
 	{
 	}
 }
 
-static void User_Defined3_Task( void *pvParameters )
+void User_Defined3_Task( void *pvParameters )
 {
 	while(1)
 	{
 	}
 }
 
-static void DDT_Generator_Task( void *pvParameters )
+void DDT_Generator_Task( void *pvParameters )
 {
 	TaskHandle_t task1;
 	xTaskCreate( User_Defined1_Task, "UserDef1", configMINIMAL_STACK_SIZE, NULL, 0, &task1);
@@ -398,7 +388,7 @@ static void DDT_Generator_Task( void *pvParameters )
 
 	}
 }
-static void Monitor_Task( void *pvParameters )
+void Monitor_Task( void *pvParameters )
 {
 	while(1)
 	{
@@ -528,3 +518,4 @@ volatile size_t xFreeStackSpace;
 		reduced accordingly. */
 	}
 }
+
